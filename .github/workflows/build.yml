@@ -63,9 +63,9 @@ jobs:
             RUN_SH: 'run.sh'
             DEVICE_DIR: 'k2p'
           run: |
-            [ -e device/$DEVICE_DIR/$CONFIG_FILE ] && mv device/$DEVICE_DIR/$CONFIG_FILE openwrt/.config
+            [ -e device/$DEVICE_DIR/$CONFIG_FILE ] && "find $CONFIG_FILE" &&mv device/$DEVICE_DIR/$CONFIG_FILE openwrt/.config
             cd openwrt
-            [ -e ../device/$DEVICE_DIR/$RUN_SH ] && chmod +x ../device/$DEVICE_DIR/$RUN_SH && ../device/$DEVICE_DIR/$RUN_SH
+            [ -e ../device/$DEVICE_DIR/$RUN_SH ] && chmod +x ../device/$DEVICE_DIR/$RUN_SH && echo "find $RUN_SH" && ../device/$DEVICE_DIR/$RUN_SH
             make defconfig
 
         - name: Download package
